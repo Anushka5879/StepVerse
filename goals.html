@@ -1,81 +1,86 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Goals | StepMeasure</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="styles.css" />
-  </head>
-  <body data-page="goals">
-    <div class="app-shell">
-      <header class="topbar">
-        <div class="brand">
-          <span class="brand-mark"></span>
-          <span>StepPulse</span>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Goals | StepMeasure</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body data-page="goals">
+  <div class="app-shell">
+    <header class="topbar">
+      <div class="brand">
+        <span class="brand-mark"></span>
+        <span>StepPulse</span>
+      </div>
+      <nav class="main-nav" aria-label="Main navigation">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="dashboard.html" class="nav-link">Dashboard</a>
+        <a href="profile.html" class="nav-link">Profile</a>
+        <a href="goals.html" class="nav-link active">Goals</a>
+        <a href="reflection.html" class="nav-link">Reflection</a>
+      </nav>
+    </header>
+
+    <main class="page-panel">
+      <section class="card feature-page hero glow-card">
+        <div>
+          <p class="eyebrow">Goal planner</p>
+          <h1>Set smart walking targets.</h1>
+          <p class="subtitle">Build consistent routines and keep your momentum strong every week.</p>
         </div>
-        <nav class="main-nav" aria-label="Main navigation">
-          <a href="index.html" class="nav-link">Home</a>
-          <a href="dashboard.html" class="nav-link">Dashboard</a>
-          <a href="profile.html" class="nav-link">Profile</a>
-          <a href="goals.html" class="nav-link active">Goals</a>
-          <a href="reflection.html" class="nav-link">Reflection</a>
-        </nav>
-      </header>
-
-      <main class="page-panel">
-        <section class="card feature-page hero glow-card">
-          <div>
-            <p class="eyebrow">Goal planner</p>
-            <h1>Set smart walking targets.</h1>
-            <p class="subtitle">Build consistent routines and keep your momentum strong every week.</p>
+        <div class="goal-card-stack">
+          <div class="mini-goal-card">
+            <span>Daily</span>
+            <strong>9,000</strong>
           </div>
-          <div class="goal-card-stack">
-            <div class="mini-goal-card">
-              <span>Daily</span>
-              <strong>9,000</strong>
-            </div>
-            <div class="mini-goal-card accent-card">
-              <span>Weekly</span>
-              <strong>63,000</strong>
-            </div>
+          <div class="mini-goal-card accent-card">
+            <span>Weekly</span>
+            <strong>63,000</strong>
           </div>
-        </section>
+        </div>
+      </section>
 
-        <section class="goal-grid">
-          <article class="card goal-card hover-lift">
-            <h2>Daily goal</h2>
-            <p>Stay above your minimum target and keep your energy high.</p>
-            <div class="goal-meter">
-              <span style="width: 72%"></span>
-            </div>
-            <strong>72% on target</strong>
-          </article>
+      <section class="goal-grid">
+        <article class="card goal-card hover-lift">
+          <h2>Daily goal</h2>
+          <p>Stay above your minimum target and keep your energy high.</p>
+          <div class="goal-meter">
+            <span style="width: 72%"></span>
+          </div>
+          <strong>72% on target</strong>
+        </article>
 
-          <article class="card goal-card hover-lift">
-            <h2>Weekly goal</h2>
-            <p>Reach a steady rhythm across all seven days.</p>
-            <div class="goal-meter orange">
-              <span style="width: 64%"></span>
-            </div>
-            <strong>64% this week</strong>
-          </article>
+        <article class="card goal-card hover-lift">
+          <h2>Weekly goal</h2>
+          <p>Reach a steady rhythm across all seven days.</p>
+          <div class="goal-meter orange">
+            <span style="width: 64%"></span>
+          </div>
+          <strong>64% this week</strong>
+        </article>
 
-          <article class="card goal-card hover-lift">
-            <h2>Recovery mode</h2>
-            <p>Balance movement with rest, so goals stay realistic and sustainable.</p>
-            <div class="goal-meter green">
-              <span style="width: 82%"></span>
-            </div>
-            <strong>82% sustainable</strong>
-          </article>
-        </section>
-      </main>
-    </div>
+        <article class="card goal-card hover-lift">
+          <h2>Recovery mode</h2>
+          <p>Balance movement with rest, so goals stay realistic and sustainable.</p>
+          <div class="goal-meter green">
+            <span style="width: 82%"></span>
+          </div>
+          <strong>82% sustainable</strong>
+        </article>
+      </section>
+    </main>
+  </div>
 
-    <script type="module" src="index.js"></script>
-  </body>
+  <script type="module" src="index.js"></script>
+</body>
+
 </html>

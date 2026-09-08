@@ -1,116 +1,124 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Profile | StepMeasure</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="styles.css" />
-  </head>
-  <body data-page="profile">
-    <div class="app-shell">
-      <header class="topbar">
-        <div class="brand">
-          <span class="brand-mark"></span>
-          <span>StepPulse</span>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Profile | StepMeasure</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body data-page="profile">
+  <div class="app-shell">
+    <header class="topbar">
+      <div class="brand">
+        <span class="brand-mark"></span>
+        <span>StepPulse</span>
+      </div>
+      <nav class="main-nav" aria-label="Main navigation">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="dashboard.html" class="nav-link">Dashboard</a>
+        <a href="profile.html" class="nav-link active">Profile</a>
+        <a href="goals.html" class="nav-link">Goals</a>
+        <a href="reflection.html" class="nav-link">Reflection</a>
+      </nav>
+    </header>
+
+    <main class="page-panel">
+      <!-- Profile Header -->
+      <section class="card profile-hero glow-card">
+        <div class="profile-avatar-section">
+          <div id="userAvatar" class="profile-avatar">👤</div>
+          <div class="avatar-selector" style="display: none;">
+            <button class="avatar-btn" data-avatar="👤">👤</button>
+            <button class="avatar-btn" data-avatar="🏃">🏃</button>
+            <button class="avatar-btn" data-avatar="💪">💪</button>
+            <button class="avatar-btn" data-avatar="⚡">⚡</button>
+            <button class="avatar-btn" data-avatar="🔥">🔥</button>
+            <button class="avatar-btn" data-avatar="🎯">🎯</button>
+          </div>
+          <button id="changeAvatarBtn" class="change-avatar-btn">Change avatar</button>
         </div>
-        <nav class="main-nav" aria-label="Main navigation">
-          <a href="index.html" class="nav-link">Home</a>
-          <a href="dashboard.html" class="nav-link">Dashboard</a>
-          <a href="profile.html" class="nav-link active">Profile</a>
-          <a href="goals.html" class="nav-link">Goals</a>
-          <a href="reflection.html" class="nav-link">Reflection</a>
-        </nav>
-      </header>
 
-      <main class="page-panel">
-        <!-- Profile Header -->
-        <section class="card profile-hero glow-card">
-          <div class="profile-avatar-section">
-            <div id="userAvatar" class="profile-avatar">👤</div>
-            <div class="avatar-selector" style="display: none;">
-              <button class="avatar-btn" data-avatar="👤">👤</button>
-              <button class="avatar-btn" data-avatar="🏃">🏃</button>
-              <button class="avatar-btn" data-avatar="💪">💪</button>
-              <button class="avatar-btn" data-avatar="⚡">⚡</button>
-              <button class="avatar-btn" data-avatar="🔥">🔥</button>
-              <button class="avatar-btn" data-avatar="🎯">🎯</button>
-            </div>
-            <button id="changeAvatarBtn" class="change-avatar-btn">Change avatar</button>
+        <div class="profile-header-content">
+          <div class="username-edit">
+            <input type="text" id="usernameInput" placeholder="Enter your name" maxlength="20" />
+            <button id="saveUsernameBtn" class="mini-btn">Save</button>
           </div>
+          <p id="userLevel" class="user-level">Beginner</p>
+          <p class="subtitle" id="userTagline">Start your fitness journey today</p>
+        </div>
+      </section>
 
-          <div class="profile-header-content">
-            <div class="username-edit">
-              <input type="text" id="usernameInput" placeholder="Enter your name" maxlength="20" />
-              <button id="saveUsernameBtn" class="mini-btn">Save</button>
-            </div>
-            <p id="userLevel" class="user-level">Beginner</p>
-            <p class="subtitle" id="userTagline">Start your fitness journey today</p>
+      <!-- Fitness Level Selection -->
+      <section class="card profile-section">
+        <h2>Your Fitness Level</h2>
+        <p class="section-desc">This helps us personalize your goals and recommendations.</p>
+        <div class="level-selector">
+          <button class="level-btn" data-level="Beginner" data-desc="Just starting out, 5k-7k steps/day">🌱
+            Beginner</button>
+          <button class="level-btn" data-level="Intermediate" data-desc="Regular walker, 7k-10k steps/day">🚶
+            Intermediate</button>
+          <button class="level-btn" data-level="Advanced" data-desc="Active lifestyle, 10k+ steps/day">🏃
+            Advanced</button>
+        </div>
+      </section>
+
+      <!-- Lifetime Statistics -->
+      <section class="card profile-section">
+        <h2>Your Achievements</h2>
+        <div class="stats-showcase">
+          <div class="stat-showcase-item">
+            <strong id="totalStepsDisplay">0</strong>
+            <span>Total Steps</span>
           </div>
-        </section>
-
-        <!-- Fitness Level Selection -->
-        <section class="card profile-section">
-          <h2>Your Fitness Level</h2>
-          <p class="section-desc">This helps us personalize your goals and recommendations.</p>
-          <div class="level-selector">
-            <button class="level-btn" data-level="Beginner" data-desc="Just starting out, 5k-7k steps/day">🌱 Beginner</button>
-            <button class="level-btn" data-level="Intermediate" data-desc="Regular walker, 7k-10k steps/day">🚶 Intermediate</button>
-            <button class="level-btn" data-level="Advanced" data-desc="Active lifestyle, 10k+ steps/day">🏃 Advanced</button>
+          <div class="stat-showcase-item">
+            <strong id="bestStreakDisplay">0</strong>
+            <span>Best Streak</span>
           </div>
-        </section>
-
-        <!-- Lifetime Statistics -->
-        <section class="card profile-section">
-          <h2>Your Achievements</h2>
-          <div class="stats-showcase">
-            <div class="stat-showcase-item">
-              <strong id="totalStepsDisplay">0</strong>
-              <span>Total Steps</span>
-            </div>
-            <div class="stat-showcase-item">
-              <strong id="bestStreakDisplay">0</strong>
-              <span>Best Streak</span>
-            </div>
-            <div class="stat-showcase-item">
-              <strong id="totalDaysDisplay">0</strong>
-              <span>Active Days</span>
-            </div>
-            <div class="stat-showcase-item">
-              <strong id="achievementCountDisplay">0</strong>
-              <span>Achievements</span>
-            </div>
+          <div class="stat-showcase-item">
+            <strong id="totalDaysDisplay">0</strong>
+            <span>Active Days</span>
           </div>
-        </section>
-
-        <!-- Preferred Activities -->
-        <section class="card profile-section">
-          <h2>Favorite Activities</h2>
-          <p class="section-desc">Select activities you enjoy (helps with personalized tips).</p>
-          <div class="activity-selector">
-            <button class="activity-btn" data-activity="Walking">🚶 Walking</button>
-            <button class="activity-btn" data-activity="Running">🏃 Running</button>
-            <button class="activity-btn" data-activity="Hiking">⛰️ Hiking</button>
-            <button class="activity-btn" data-activity="Cycling">🚴 Cycling</button>
-            <button class="activity-btn" data-activity="Dancing">💃 Dancing</button>
-            <button class="activity-btn" data-activity="Sports">⚽ Sports</button>
+          <div class="stat-showcase-item">
+            <strong id="achievementCountDisplay">0</strong>
+            <span>Achievements</span>
           </div>
-        </section>
+        </div>
+      </section>
 
-        <!-- Profile Actions -->
-        <section class="card profile-section">
-          <h2>Settings</h2>
-          <div class="profile-actions">
-            <button id="exportDataBtn" class="action-link">📥 Export My Data (CSV)</button>
-            <button id="resetProfileBtn" class="action-link danger">🔄 Reset Profile</button>
-          </div>
-        </section>
-      </main>
-    </div>
+      <!-- Preferred Activities -->
+      <section class="card profile-section">
+        <h2>Favorite Activities</h2>
+        <p class="section-desc">Select activities you enjoy (helps with personalized tips).</p>
+        <div class="activity-selector">
+          <button class="activity-btn" data-activity="Walking">🚶 Walking</button>
+          <button class="activity-btn" data-activity="Running">🏃 Running</button>
+          <button class="activity-btn" data-activity="Hiking">⛰️ Hiking</button>
+          <button class="activity-btn" data-activity="Cycling">🚴 Cycling</button>
+          <button class="activity-btn" data-activity="Dancing">💃 Dancing</button>
+          <button class="activity-btn" data-activity="Sports">⚽ Sports</button>
+        </div>
+      </section>
 
-    <script type="module" src="index.js"></script>
-  </body>
+      <!-- Profile Actions -->
+      <section class="card profile-section">
+        <h2>Settings</h2>
+        <div class="profile-actions">
+          <button id="exportDataBtn" class="action-link">📥 Export My Data (CSV)</button>
+          <button id="resetProfileBtn" class="action-link danger">🔄 Reset Profile</button>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script type="module" src="index.js"></script>
+</body>
+
 </html>

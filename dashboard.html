@@ -1,232 +1,238 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Dashboard | StepMeasure</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="styles.css" />
-  </head>
-  <body class="intro-active" data-page="dashboard">
-    <div id="introOverlay" class="intro-overlay" aria-live="polite" aria-label="StepMeasure loading screen">
-      <div class="intro-glow"></div>
-      <div class="intro-badge">StepMeasure</div>
-      <h2>Measure your motion.</h2>
-      <p>Track every step. Build momentum. Stay consistent.</p>
-    </div>
 
-    <div class="app-shell">
-      <header class="topbar">
-        <div class="brand">
-          <span class="brand-mark"></span>
-          <span>StepPulse</span>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard | StepMeasure</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body class="intro-active" data-page="dashboard">
+  <div id="introOverlay" class="intro-overlay" aria-live="polite" aria-label="StepMeasure loading screen">
+    <div class="intro-glow"></div>
+    <div class="intro-badge">StepMeasure</div>
+    <h2>Measure your motion.</h2>
+    <p>Track every step. Build momentum. Stay consistent.</p>
+  </div>
+
+  <div class="app-shell">
+    <header class="topbar">
+      <div class="brand">
+        <span class="brand-mark"></span>
+        <span>StepPulse</span>
+      </div>
+      <nav class="main-nav" aria-label="Main navigation">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="dashboard.html" class="nav-link active">Dashboard</a>
+        <a href="profile.html" class="nav-link">Profile</a>
+        <a href="goals.html" class="nav-link">Goals</a>
+        <a href="reflection.html" class="nav-link">Reflection</a>
+      </nav>
+    </header>
+
+    <main class="dashboard">
+      <section class="hero card glow-card section-panel">
+        <div class="hero-copy">
+          <p class="eyebrow">Daily movement</p>
+          <h1>Turn every step into momentum.</h1>
+          <p id="motivationalText" class="subtitle">You're on a strong streak — keep moving.</p>
         </div>
-        <nav class="main-nav" aria-label="Main navigation">
-          <a href="index.html" class="nav-link">Home</a>
-          <a href="dashboard.html" class="nav-link active">Dashboard</a>
-          <a href="profile.html" class="nav-link">Profile</a>
-          <a href="goals.html" class="nav-link">Goals</a>
-          <a href="reflection.html" class="nav-link">Reflection</a>
-        </nav>
-      </header>
 
-      <main class="dashboard">
-        <section class="hero card glow-card section-panel">
-          <div class="hero-copy">
-            <p class="eyebrow">Daily movement</p>
-            <h1>Turn every step into momentum.</h1>
-            <p id="motivationalText" class="subtitle">You're on a strong streak — keep moving.</p>
-          </div>
-
-          <div class="hero-visual">
-            <div class="floating-step">👟</div>
-            <div class="goal-ring" aria-live="polite">
-              <svg viewBox="0 0 220 220" class="ring-svg" role="img" aria-label="Step progress">
-                <defs>
-                  <linearGradient id="ringGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stop-color="#7c5cff" />
-                    <stop offset="100%" stop-color="#2fe1b8" />
-                  </linearGradient>
-                </defs>
-                <circle class="ring-bg" cx="110" cy="110" r="86"></circle>
-                <circle id="progressRing" class="ring-progress" cx="110" cy="110" r="86"></circle>
-              </svg>
-              <div class="ring-content">
-                <span id="stepsDisplay" class="steps-value">0</span>
-                <small>steps</small>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section class="stats-grid section-panel">
-          <article class="stat-card card hover-lift">
-            <span class="stat-label">Goal</span>
-            <strong id="goalDisplay">9,000</strong>
-          </article>
-          <article class="stat-card card hover-lift">
-            <span class="stat-label">Distance</span>
-            <strong id="distanceDisplay">0.00 km</strong>
-          </article>
-          <article class="stat-card card hover-lift">
-            <span class="stat-label">Calories</span>
-            <strong id="caloriesDisplay">0 kcal</strong>
-          </article>
-          <article class="stat-card card hover-lift">
-            <span class="stat-label">Streak</span>
-            <strong id="streakDisplay">5 days</strong>
-          </article>
-        </section>
-
-        <section class="controls card hover-lift section-panel">
-          <div class="quick-actions">
-            <button class="action-btn primary" data-add="500">+500</button>
-            <button class="action-btn" data-add="1000">+1,000</button>
-            <button class="action-btn" data-add="2500">+2,500</button>
-            <button class="action-btn accent" id="surpriseBtn">Surprise</button>
-          </div>
-
-          <div class="goal-editor">
-            <label for="goalInput">Set your daily goal</label>
-            <div class="goal-wrap">
-              <input id="goalInput" type="number" min="1000" step="500" value="9000" />
-              <button id="setGoalBtn" class="mini-btn">Apply</button>
-            </div>
-          </div>
-
-          <div class="goal-editor">
-            <label for="datePicker">Choose date</label>
-            <div class="goal-wrap">
-              <input id="datePicker" type="date" value="" />
-            </div>
-          </div>
-
-          <div class="date-label-wrap">
-            <p class="date-label">Selected day</p>
-            <strong id="selectedDateText">Monday, Aug 31</strong>
-          </div>
-
-          <div class="week-picker" aria-label="Choose a day of the week">
-            <div class="week-picker-header">
-              <button id="prevWeekBtn" class="week-nav-btn" type="button" aria-label="Previous week">←</button>
-              <span class="week-picker-title">This week</span>
-              <button id="nextWeekBtn" class="week-nav-btn" type="button" aria-label="Next week">→</button>
-            </div>
-            <div id="weekDays" class="week-days"></div>
-          </div>
-
-          <button id="resetBtn" class="reset-btn">Reset</button>
-        </section>
-
-        <section class="card section-panel history-panel">
-          <div class="history-header">
-            <h2>Daily Step History</h2>
-            <span class="history-badge">Last 7 days</span>
-          </div>
-          <div class="history-table-wrap">
-            <table class="history-table">
-              <thead>
-                <tr>
-                  <th>Day</th>
-                  <th>Date</th>
-                  <th>Steps</th>
-                </tr>
-              </thead>
-              <tbody id="historyTableBody"></tbody>
-            </table>
-          </div>
-        </section>
-
-        <!-- Habit Score Section -->
-        <section class="habit-score card section-panel">
-          <div class="habit-header">
-            <h2>This Week's Habit Score</h2>
-            <span id="habitScoreBadge" class="habit-badge">Excellent</span>
-          </div>
-          <div class="habit-display">
-            <svg viewBox="0 0 180 180" class="habit-ring">
-              <circle cx="90" cy="90" r="80" class="habit-bg"></circle>
-              <circle id="habitRing" cx="90" cy="90" r="80" class="habit-progress"></circle>
+        <div class="hero-visual">
+          <div class="floating-step">👟</div>
+          <div class="goal-ring" aria-live="polite">
+            <svg viewBox="0 0 220 220" class="ring-svg" role="img" aria-label="Step progress">
+              <defs>
+                <linearGradient id="ringGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#7c5cff" />
+                  <stop offset="100%" stop-color="#2fe1b8" />
+                </linearGradient>
+              </defs>
+              <circle class="ring-bg" cx="110" cy="110" r="86"></circle>
+              <circle id="progressRing" class="ring-progress" cx="110" cy="110" r="86"></circle>
             </svg>
-            <div class="habit-center">
-              <strong id="habitScorePercent">0%</strong>
-              <small>Consistency</small>
+            <div class="ring-content">
+              <span id="stepsDisplay" class="steps-value">0</span>
+              <small>steps</small>
             </div>
           </div>
-          <div class="habit-breakdown">
-            <p id="habitText">Complete daily goals to build your habit streak!</p>
-          </div>
-        </section>
+        </div>
+      </section>
 
-        <!-- Daily Quests Section -->
-        <section class="daily-quests card section-panel">
-          <div class="quests-header">
-            <h2>Today's Quests</h2>
-            <span id="questsProgressBadge" class="quest-badge">0/3</span>
-          </div>
-          <div id="questsList" class="quests-list">
-            <!-- Quests populated by JS -->
-          </div>
-        </section>
+      <section class="stats-grid section-panel">
+        <article class="stat-card card hover-lift">
+          <span class="stat-label">Goal</span>
+          <strong id="goalDisplay">9,000</strong>
+        </article>
+        <article class="stat-card card hover-lift">
+          <span class="stat-label">Distance</span>
+          <strong id="distanceDisplay">0.00 km</strong>
+        </article>
+        <article class="stat-card card hover-lift">
+          <span class="stat-label">Calories</span>
+          <strong id="caloriesDisplay">0 kcal</strong>
+        </article>
+        <article class="stat-card card hover-lift">
+          <span class="stat-label">Streak</span>
+          <strong id="streakDisplay">5 days</strong>
+        </article>
+      </section>
 
-        <!-- Smart Goal Recommendation -->
-        <section class="smart-goal card section-panel">
-          <div class="smart-goal-header">
-            <div>
-              <p class="eyebrow">AI Recommendation</p>
-              <h2>Your Smart Goal for Tomorrow</h2>
-            </div>
-            <button id="acceptSmartGoal" class="mini-btn">Accept</button>
+      <section class="controls card hover-lift section-panel">
+        <div class="quick-actions">
+          <button class="action-btn primary" data-add="500">+500</button>
+          <button class="action-btn" data-add="1000">+1,000</button>
+          <button class="action-btn" data-add="2500">+2,500</button>
+          <button class="action-btn accent" id="surpriseBtn">Surprise</button>
+        </div>
+
+        <div class="goal-editor">
+          <label for="goalInput">Set your daily goal</label>
+          <div class="goal-wrap">
+            <input id="goalInput" type="number" min="1000" step="500" value="9000" />
+            <button id="setGoalBtn" class="mini-btn">Apply</button>
           </div>
-          <p id="smartGoalText" class="smart-goal-text">Based on your weekly performance, we recommend a goal of 9,500 steps.</p>
-          <div class="goal-explanation">
-            <small id="goalExplainText">Your average this week was 9,000 steps. We suggest pushing 5% higher!</small>
+        </div>
+
+        <div class="goal-editor">
+          <label for="datePicker">Choose date</label>
+          <div class="goal-wrap">
+            <input id="datePicker" type="date" value="" />
           </div>
-        </section>
+        </div>
 
-        <!-- Active Power-ups -->
-        <section class="active-powerups card section-panel" style="display: none;">
-          <h2>Active Power-Ups</h2>
-          <div id="powerupsList" class="powerups-grid">
-            <!-- Power-ups populated by JS -->
+        <div class="date-label-wrap">
+          <p class="date-label">Selected day</p>
+          <strong id="selectedDateText">Monday, Aug 31</strong>
+        </div>
+
+        <div class="week-picker" aria-label="Choose a day of the week">
+          <div class="week-picker-header">
+            <button id="prevWeekBtn" class="week-nav-btn" type="button" aria-label="Previous week">←</button>
+            <span class="week-picker-title">This week</span>
+            <button id="nextWeekBtn" class="week-nav-btn" type="button" aria-label="Next week">→</button>
           </div>
-        </section>
+          <div id="weekDays" class="week-days"></div>
+        </div>
 
-        <section class="insights section-panel">
-          <article class="card insight-card hover-lift">
-            <div class="insight-header">
-              <h2>Today’s pace</h2>
-              <span id="percentageDisplay">0%</span>
-            </div>
-            <div class="progress-bar" aria-label="Progress">
-              <span id="progressFill"></span>
-            </div>
-            <div class="progress-meta">
-              <span id="remainingDisplay">9,000 to goal</span>
-              <span id="paceDisplay">0 steps/hr</span>
-            </div>
-          </article>
+        <button id="resetBtn" class="reset-btn">Reset</button>
+      </section>
 
-          <article class="card achievement-card hover-lift">
-            <h2>Milestones</h2>
-            <div class="mini-chart" aria-label="Weekly step progress">
-              <span style="--h:40%"></span>
-              <span style="--h:60%"></span>
-              <span style="--h:55%"></span>
-              <span style="--h:75%"></span>
-              <span style="--h:88%"></span>
-              <span style="--h:63%"></span>
-              <span style="--h:95%"></span>
-            </div>
-            <ul id="achievementList" class="achievement-list"></ul>
-          </article>
-        </section>
-      </main>
-    </div>
+      <section class="card section-panel history-panel">
+        <div class="history-header">
+          <h2>Daily Step History</h2>
+          <span class="history-badge">Last 7 days</span>
+        </div>
+        <div class="history-table-wrap">
+          <table class="history-table">
+            <thead>
+              <tr>
+                <th>Day</th>
+                <th>Date</th>
+                <th>Steps</th>
+              </tr>
+            </thead>
+            <tbody id="historyTableBody"></tbody>
+          </table>
+        </div>
+      </section>
 
-    <script type="module" src="index.js"></script>
-  </body>
+      <!-- Habit Score Section -->
+      <section class="habit-score card section-panel">
+        <div class="habit-header">
+          <h2>This Week's Habit Score</h2>
+          <span id="habitScoreBadge" class="habit-badge">Excellent</span>
+        </div>
+        <div class="habit-display">
+          <svg viewBox="0 0 180 180" class="habit-ring">
+            <circle cx="90" cy="90" r="80" class="habit-bg"></circle>
+            <circle id="habitRing" cx="90" cy="90" r="80" class="habit-progress"></circle>
+          </svg>
+          <div class="habit-center">
+            <strong id="habitScorePercent">0%</strong>
+            <small>Consistency</small>
+          </div>
+        </div>
+        <div class="habit-breakdown">
+          <p id="habitText">Complete daily goals to build your habit streak!</p>
+        </div>
+      </section>
+
+      <!-- Daily Quests Section -->
+      <section class="daily-quests card section-panel">
+        <div class="quests-header">
+          <h2>Today's Quests</h2>
+          <span id="questsProgressBadge" class="quest-badge">0/3</span>
+        </div>
+        <div id="questsList" class="quests-list">
+          <!-- Quests populated by JS -->
+        </div>
+      </section>
+
+      <!-- Smart Goal Recommendation -->
+      <section class="smart-goal card section-panel">
+        <div class="smart-goal-header">
+          <div>
+            <p class="eyebrow">AI Recommendation</p>
+            <h2>Your Smart Goal for Tomorrow</h2>
+          </div>
+          <button id="acceptSmartGoal" class="mini-btn">Accept</button>
+        </div>
+        <p id="smartGoalText" class="smart-goal-text">Based on your weekly performance, we recommend a goal of 9,500
+          steps.</p>
+        <div class="goal-explanation">
+          <small id="goalExplainText">Your average this week was 9,000 steps. We suggest pushing 5% higher!</small>
+        </div>
+      </section>
+
+      <!-- Active Power-ups -->
+      <section class="active-powerups card section-panel" style="display: none;">
+        <h2>Active Power-Ups</h2>
+        <div id="powerupsList" class="powerups-grid">
+          <!-- Power-ups populated by JS -->
+        </div>
+      </section>
+
+      <section class="insights section-panel">
+        <article class="card insight-card hover-lift">
+          <div class="insight-header">
+            <h2>Today’s pace</h2>
+            <span id="percentageDisplay">0%</span>
+          </div>
+          <div class="progress-bar" aria-label="Progress">
+            <span id="progressFill"></span>
+          </div>
+          <div class="progress-meta">
+            <span id="remainingDisplay">9,000 to goal</span>
+            <span id="paceDisplay">0 steps/hr</span>
+          </div>
+        </article>
+
+        <article class="card achievement-card hover-lift">
+          <h2>Milestones</h2>
+          <div class="mini-chart" aria-label="Weekly step progress">
+            <span style="--h:40%"></span>
+            <span style="--h:60%"></span>
+            <span style="--h:55%"></span>
+            <span style="--h:75%"></span>
+            <span style="--h:88%"></span>
+            <span style="--h:63%"></span>
+            <span style="--h:95%"></span>
+          </div>
+          <ul id="achievementList" class="achievement-list"></ul>
+        </article>
+      </section>
+    </main>
+  </div>
+
+  <script type="module" src="index.js"></script>
+</body>
+
 </html>

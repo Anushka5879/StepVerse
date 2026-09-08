@@ -1,59 +1,67 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Reflection | StepMeasure</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="styles.css" />
-  </head>
-  <body data-page="reflection">
-    <div class="app-shell">
-      <header class="topbar">
-        <div class="brand">
-          <span class="brand-mark"></span>
-          <span>StepPulse</span>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Reflection | StepMeasure</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body data-page="reflection">
+  <div class="app-shell">
+    <header class="topbar">
+      <div class="brand">
+        <span class="brand-mark"></span>
+        <span>StepPulse</span>
+      </div>
+      <nav class="main-nav" aria-label="Main navigation">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="dashboard.html" class="nav-link">Dashboard</a>
+        <a href="profile.html" class="nav-link">Profile</a>
+        <a href="goals.html" class="nav-link">Goals</a>
+        <a href="reflection.html" class="nav-link active">Reflection</a>
+      </nav>
+    </header>
+
+    <main class="page-panel">
+      <section class="card reflection-page hover-lift">
+        <div class="reason-header">
+          <div>
+            <p class="eyebrow small">Daily check-in</p>
+            <h1>What happened today?</h1>
+          </div>
+          <span class="reason-badge warning">Needs attention</span>
         </div>
-        <nav class="main-nav" aria-label="Main navigation">
-          <a href="index.html" class="nav-link">Home</a>
-          <a href="dashboard.html" class="nav-link">Dashboard</a>
-          <a href="profile.html" class="nav-link">Profile</a>
-          <a href="goals.html" class="nav-link">Goals</a>
-          <a href="reflection.html" class="nav-link active">Reflection</a>
-        </nav>
-      </header>
 
-      <main class="page-panel">
-        <section class="card reflection-page hover-lift">
-          <div class="reason-header">
-            <div>
-              <p class="eyebrow small">Daily check-in</p>
-              <h1>What happened today?</h1>
-            </div>
-            <span class="reason-badge warning">Needs attention</span>
-          </div>
+        <div class="reason-chips">
+          <button class="reason-chip" type="button" data-reason="Long workday and not enough time to walk.">Long
+            workday</button>
+          <button class="reason-chip" type="button" data-reason="I was feeling tired and needed rest.">Tired</button>
+          <button class="reason-chip" type="button" data-reason="Weather was bad, so I stayed inside.">Bad
+            weather</button>
+          <button class="reason-chip" type="button" data-reason="I had errands and travel that slowed my walk.">Busy
+            day</button>
+        </div>
 
-          <div class="reason-chips">
-            <button class="reason-chip" type="button" data-reason="Long workday and not enough time to walk.">Long workday</button>
-            <button class="reason-chip" type="button" data-reason="I was feeling tired and needed rest.">Tired</button>
-            <button class="reason-chip" type="button" data-reason="Weather was bad, so I stayed inside.">Bad weather</button>
-            <button class="reason-chip" type="button" data-reason="I had errands and travel that slowed my walk.">Busy day</button>
-          </div>
+        <textarea id="reasonInput" rows="5" placeholder="Write your reason for not reaching today’s goal..."></textarea>
+        <div class="reason-actions">
+          <button id="saveReasonBtn" class="mini-btn save-btn">Save reflection</button>
+          <button id="clearReasonBtn" class="clear-btn">Clear</button>
+        </div>
 
-          <textarea id="reasonInput" rows="5" placeholder="Write your reason for not reaching today’s goal..."></textarea>
-          <div class="reason-actions">
-            <button id="saveReasonBtn" class="mini-btn save-btn">Save reflection</button>
-            <button id="clearReasonBtn" class="clear-btn">Clear</button>
-          </div>
+        <p id="reasonStatus" class="reason-status">No reason saved yet.</p>
+      </section>
+    </main>
+  </div>
 
-          <p id="reasonStatus" class="reason-status">No reason saved yet.</p>
-        </section>
-      </main>
-    </div>
+  <script type="module" src="index.js"></script>
+</body>
 
-    <script type="module" src="index.js"></script>
-  </body>
 </html>
