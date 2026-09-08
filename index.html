@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>StepPulse</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>  
+  <body class="intro-active">
+    <div id="introOverlay" class="intro-overlay" aria-live="polite" aria-label="StepMeasure loading screen">
+      <div class="intro-glow"></div>
+      <div class="intro-badge">StepMeasure</div>
+      <h2>Measure your motion.</h2>
+      <p>Track every step. Build momentum. Stay consistent.</p>
+    </div>
+
+    <div class="app-shell">
+      <header class="topbar">
+        <div class="brand">
+          <span class="brand-mark"></span>
+          <span>StepVerse</span>
+        </div>
+        <nav class="main-nav" aria-label="Main navigation">
+          <a href="index.html" class="nav-link active">Home</a>
+          <a href="dashboard.html" class="nav-link">Dashboard</a>
+          <a href="profile.html" class="nav-link">Profile</a>
+          <a href="goals.html" class="nav-link">Goals</a>
+          <a href="reflection.html" class="nav-link">Reflection</a>
+        </nav>
+      </header>
+
+      <section class="feature-rail" aria-label="Feature overview">
+        <button class="feature-pill" type="button" data-target="#dashboard">Live tracker</button>
+        <button class="feature-pill" type="button" data-target="#goals">Goal setting</button>
+        <button class="feature-pill" type="button" data-target="#insights">Progress insights</button>
+        <button class="feature-pill" type="button" data-target="#reflection">Daily reflection</button>
+      </section>
+
+      <main class="dashboard">
+        <section id="dashboard" class="hero card glow-card section-panel">
+          <div class="hero-copy">
+            <p class="eyebrow">Daily movement</p>
+            <h1>Turn every step into momentum.</h1>
+            <p id="motivationalText" class="subtitle">You’re on a strong streak — keep moving.</p>
+          </div>
+
+          <div class="hero-visual">
+            <div class="floating-step">👟</div>
+            <div class="goal-ring" aria-live="polite">
+            <svg viewBox="0 0 220 220" class="ring-svg" role="img" aria-label="Step progress">
+              <defs>
+                <linearGradient id="ringGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#7c5cff" />
+                  <stop offset="100%" stop-color="#2fe1b8" />
+                </linearGradient>
+              </defs>
+              <circle class="ring-bg" cx="110" cy="110" r="86"></circle>
+              <circle id="progressRing" class="ring-progress" cx="110" cy="110" r="86"></circle>
+            </svg>
+            <div class="ring-content">
+              <span id="stepsDisplay" class="steps-value">0</span>
+              <small>steps</small>
+            </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="goals" class="stats-grid section-panel">
+          <article class="stat-card card hover-lift">
+            <span class="stat-label">Goal</span>
+            <strong id="goalDisplay">9,000</strong>
+          </article>
+          <article class="stat-card card hover-lift">
+            <span class="stat-label">Distance</span>
+            <strong id="distanceDisplay">0.00 km</strong>
+          </article>
+          <article class="stat-card card hover-lift">
+            <span class="stat-label">Calories</span>
+            <strong id="caloriesDisplay">0 kcal</strong>
+          </article>
+          <article class="stat-card card hover-lift">
+            <span class="stat-label">Streak</span>
+            <strong id="streakDisplay">5 days</strong>
+          </article>
+        </section>
+
+        <section class="controls card hover-lift section-panel">
+          <div class="quick-actions">
+            <button class="action-btn primary" data-add="500">+500</button>
+            <button class="action-btn" data-add="1000">+1,000</button>
+            <button class="action-btn" data-add="2500">+2,500</button>
+            <button class="action-btn accent" id="surpriseBtn">Surprise</button>
+          </div>
+
+          <div class="goal-editor">
+            <label for="goalInput">Set your daily goal</label>
+            <div class="goal-wrap">
+              <input id="goalInput" type="number" min="1000" step="500" value="9000" />
+              <button id="setGoalBtn" class="mini-btn">Apply</button>
+            </div>
+          </div>
+
+          <button id="resetBtn" class="reset-btn">Reset</button>
+        </section>
+
+        <section id="insights" class="insights section-panel">
+          <article class="card insight-card hover-lift">
+            <div class="insight-header">
+              <h2>Today’s pace</h2>
+              <span id="percentageDisplay">0%</span>
+            </div>
+            <div class="progress-bar" aria-label="Progress">
+              <span id="progressFill"></span>
+            </div>
+            <div class="progress-meta">
+              <span id="remainingDisplay">9,000 to goal</span>
+              <span id="paceDisplay">0 steps/hr</span>
+            </div>
+          </article>
+
+          <article class="card achievement-card hover-lift">
+            <h2>Milestones</h2>
+            <div class="mini-chart" aria-label="Weekly step progress">
+              <span style="--h:40%"></span>
+              <span style="--h:60%"></span>
+              <span style="--h:55%"></span>
+              <span style="--h:75%"></span>
+              <span style="--h:88%"></span>
+              <span style="--h:63%"></span>
+              <span style="--h:95%"></span>
+            </div>
+            <ul id="achievementList" class="achievement-list"></ul>
+          </article>
+        </section>
+
+        <section id="reflection" class="reason-panel card hover-lift section-panel">
+          <div class="reason-header">
+            <div>
+              <p class="eyebrow small">Reflection</p>
+              <h2>If you missed your target, what happened?</h2>
+            </div>
+            <span id="reasonBadge" class="reason-badge">Goal active</span>
+          </div>
+
+          <div class="reason-chips">
+            <button class="reason-chip" type="button" data-reason="Long workday and not enough time to walk.">Long workday</button>
+            <button class="reason-chip" type="button" data-reason="I was feeling tired and needed rest.">Tired</button>
+            <button class="reason-chip" type="button" data-reason="Weather was bad, so I stayed inside.">Bad weather</button>
+            <button class="reason-chip" type="button" data-reason="I had errands and travel that slowed my walk.">Busy day</button>
+          </div>
+
+          <textarea id="reasonInput" rows="4" placeholder="Write your reason for not reaching today’s goal..."></textarea>
+          <div class="reason-actions">
+            <button id="saveReasonBtn" class="mini-btn save-btn">Save reflection</button>
+            <button id="clearReasonBtn" class="clear-btn">Clear</button>
+          </div>
+          <p id="reasonStatus" class="reason-status">No reason saved yet.</p>
+        </section>
+      </main>
+    </div>
+
+    <script type="module" src="index.js"></script>
+  </body>
+</html>
