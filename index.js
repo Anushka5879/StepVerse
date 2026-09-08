@@ -232,12 +232,25 @@ function setupAuthUI() {
 
   const currentUser = getSessionUser();
   const users = getUsers();
+  const userData = users[currentUser] || {};
+  const currentAvatar = userData.avatar || '🏃';
+  const currentName = userData.name || currentUser;
+
   const accountControls = document.createElement('div');
   accountControls.id = 'accountControls';
   accountControls.className = 'account-controls';
   accountControls.innerHTML = currentUser === 'guest'
-    ? '<button id="loginBtn" class="account-btn" type="button">Log in</button>'
-    : `<span class="account-name">${users[currentUser]?.name || currentUser}</span><button id="logoutBtn" class="account-btn" type="button">Log out</button>`;
+    ? '<button id="loginBtn" class="account-btn pulse-glow" type="button"><span class="btn-icon">⚡</span><span>Athlete Sign In</span></button>'
+    : `
+      <div class="user-chip-btn" id="userMenuBtn" role="button" tabindex="0">
+        <span class="user-avatar-badge">${currentAvatar}</span>
+        <div class="user-info-text">
+          <span class="account-name">${currentName}</span>
+          <span class="account-badge-sub">Athlete</span>
+        </div>
+        <button id="logoutBtn" class="logout-icon-btn" type="button" title="Sign out" aria-label="Sign out">✕</button>
+      </div>
+    `;
   topbar.appendChild(accountControls);
 
   const modal = document.createElement('div');
@@ -246,27 +259,113 @@ function setupAuthUI() {
   modal.innerHTML = `
     <div class="auth-card" role="dialog" aria-modal="true" aria-labelledby="authTitle">
       <button id="closeAuthBtn" class="auth-close" type="button" aria-label="Close">&times;</button>
-      <p class="eyebrow">Your private tracker</p>
-      <h2 id="authTitle">Log in to StepPulse</h2>
-      <p class="auth-note">Your account keeps your steps and reflections separate from other users on this browser.</p>
-      <form id="authForm">
-        <label for="authName">Name <span>(for sign up)</span></label>
-        <input id="authName" type="text" autocomplete="name" placeholder="Your name" />
-        <label for="authEmail">Email</label>
-        <input id="authEmail" type="email" autocomplete="email" placeholder="you@example.com" required />
-        <label for="authPassword">Password</label>
-        <input id="authPassword" type="password" autocomplete="current-password" minlength="6" placeholder="At least 6 characters" required />
+      
+      <div class="auth-header-visual">
+        <div class="auth-badge-icon">⚡</div>
+        <div>
+          <h2 id="authTitle">Join StepPulse Club</h2>
+          <p class="auth-note" id="authSubtitle">Unlock personalized metrics, streak sync, and athlete milestones.</p>
+        </div>
+      </div>
+
+      <div class="auth-tab-switch" role="tablist">
+        <button type="button" class="auth-tab active" id="tabLogin" role="tab" aria-selected="true">Log In</button>
+        <button type="button" class="auth-tab" id="tabSignup" role="tab" aria-selected="false">Create Account</button>
+      </div>
+
+      <form id="authForm" class="auth-form-body">
+        <div id="signupOnlyFields" class="signup-fields" style="display: none;">
+          <div class="auth-avatar-picker-row">
+            <span class="picker-label">Pick Athlete Badge:</span>
+            <div class="avatar-radio-group">
+              <label class="avatar-radio active"><input type="radio" name="athleteAvatar" value="🏃" checked /><span>🏃</span></label>
+              <label class="avatar-radio"><input type="radio" name="athleteAvatar" value="⚡" /><span>⚡</span></label>
+              <label class="avatar-radio"><input type="radio" name="athleteAvatar" value="🔥" /><span>🔥</span></label>
+              <label class="avatar-radio"><input type="radio" name="athleteAvatar" value="🚴" /><span>🚴</span></label>
+              <label class="avatar-radio"><input type="radio" name="athleteAvatar" value="🏆" /><span>🏆</span></label>
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <label for="authName">Full Name / Athlete Tag</label>
+            <div class="input-with-icon">
+              <span class="field-icon">👤</span>
+              <input id="authName" type="text" autocomplete="name" placeholder="e.g. Alex Runner" />
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="authEmail">Email Address</label>
+          <div class="input-with-icon">
+            <span class="field-icon">✉️</span>
+            <input id="authEmail" type="email" autocomplete="email" placeholder="alex@athlete.com" required />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="authPassword">Password</label>
+          <div class="input-with-icon">
+            <span class="field-icon">🔒</span>
+            <input id="authPassword" type="password" autocomplete="current-password" minlength="6" placeholder="At least 6 characters" required />
+          </div>
+        </div>
+
+        <div class="auth-perks-row" id="authPerks">
+          <div class="perk-item"><span>🔒</span> Private Local Vault</div>
+          <div class="perk-item"><span>🔥</span> Streak Protection</div>
+          <div class="perk-item"><span>📊</span> CSV Export Ready</div>
+        </div>
+
         <p id="authStatus" class="auth-status" role="status"></p>
-        <button id="authSubmit" class="primary-cta auth-submit" type="submit">Log in</button>
+
+        <button id="authSubmit" class="primary-cta auth-submit-btn" type="submit">
+          <span id="authBtnText">Enter Dashboard</span>
+          <span class="btn-arrow">→</span>
+        </button>
       </form>
-      <button id="authModeBtn" class="auth-mode-btn" type="button">Create a new account</button>
     </div>`;
   document.body.appendChild(modal);
 
   let signupMode = false;
   const openModal = () => modal.classList.remove('hidden');
   const closeModal = () => modal.classList.add('hidden');
-  const setStatus = (message) => { document.getElementById('authStatus').textContent = message; };
+  const setStatus = (message, isError = true) => {
+    const el = document.getElementById('authStatus');
+    if (!el) return;
+    el.textContent = message;
+    el.className = `auth-status ${isError ? 'error' : 'success'}`;
+  };
+
+  const updateMode = (isSignup) => {
+    signupMode = isSignup;
+    const tabLogin = document.getElementById('tabLogin');
+    const tabSignup = document.getElementById('tabSignup');
+    const signupFields = document.getElementById('signupOnlyFields');
+    const authTitle = document.getElementById('authTitle');
+    const authSubtitle = document.getElementById('authSubtitle');
+    const authBtnText = document.getElementById('authBtnText');
+    const authName = document.getElementById('authName');
+
+    if (signupMode) {
+      tabSignup.classList.add('active');
+      tabLogin.classList.remove('active');
+      signupFields.style.display = 'block';
+      authTitle.textContent = 'Create Athlete Profile';
+      authSubtitle.textContent = 'Join the network, set personal daily targets, and track milestones.';
+      authBtnText.textContent = 'Create Free Profile';
+      authName.required = true;
+    } else {
+      tabLogin.classList.add('active');
+      tabSignup.classList.remove('active');
+      signupFields.style.display = 'none';
+      authTitle.textContent = 'Welcome Back Athlete';
+      authSubtitle.textContent = 'Sync your daily movement, review streaks, and keep momentum.';
+      authBtnText.textContent = 'Log In & Continue';
+      authName.required = false;
+    }
+    setStatus('');
+  };
 
   document.getElementById('loginBtn')?.addEventListener('click', openModal);
   document.getElementById('logoutBtn')?.addEventListener('click', () => {
@@ -277,19 +376,24 @@ function setupAuthUI() {
   modal.addEventListener('click', (event) => {
     if (event.target === modal) closeModal();
   });
-  document.getElementById('authModeBtn').addEventListener('click', () => {
-    signupMode = !signupMode;
-    document.getElementById('authTitle').textContent = signupMode ? 'Create your StepPulse account' : 'Log in to StepPulse';
-    document.getElementById('authSubmit').textContent = signupMode ? 'Create account' : 'Log in';
-    document.getElementById('authModeBtn').textContent = signupMode ? 'I already have an account' : 'Create a new account';
-    document.getElementById('authName').required = signupMode;
-    setStatus('');
+
+  document.getElementById('tabLogin').addEventListener('click', () => updateMode(false));
+  document.getElementById('tabSignup').addEventListener('click', () => updateMode(true));
+
+  // Avatar radio selection highlight
+  document.querySelectorAll('.avatar-radio input').forEach((radio) => {
+    radio.addEventListener('change', () => {
+      document.querySelectorAll('.avatar-radio').forEach((r) => r.classList.remove('active'));
+      radio.closest('.avatar-radio').classList.add('active');
+    });
   });
+
   document.getElementById('authForm').addEventListener('submit', (event) => {
     event.preventDefault();
     const email = document.getElementById('authEmail').value.trim().toLowerCase();
     const password = document.getElementById('authPassword').value;
     const name = document.getElementById('authName').value.trim();
+    const selectedAvatar = document.querySelector('input[name="athleteAvatar"]:checked')?.value || '🏃';
     const accountUsers = getUsers();
 
     if (signupMode) {
@@ -297,15 +401,28 @@ function setupAuthUI() {
         setStatus('An account with this email already exists.');
         return;
       }
-      accountUsers[email] = { name: name || 'Fitness Enthusiast', password };
+      accountUsers[email] = {
+        name: name || 'Fitness Athlete',
+        avatar: selectedAvatar,
+        password
+      };
       saveUsers(accountUsers);
-    } else if (!accountUsers[email] || accountUsers[email].password !== password) {
-      setStatus('Email or password is incorrect.');
-      return;
+      setStatus('Account created! Logging you in...', false);
+      setTimeout(() => {
+        localStorage.setItem(SESSION_KEY, email);
+        location.reload();
+      }, 600);
+    } else {
+      if (!accountUsers[email] || accountUsers[email].password !== password) {
+        setStatus('Email or password does not match.');
+        return;
+      }
+      setStatus('Success! Opening dashboard...', false);
+      setTimeout(() => {
+        localStorage.setItem(SESSION_KEY, email);
+        location.reload();
+      }, 500);
     }
-
-    localStorage.setItem(SESSION_KEY, email);
-    location.reload();
   });
 }
 
@@ -833,8 +950,27 @@ addButtons.forEach((button) => {
   });
 });
 
+const featureRail = document.getElementById('featureRail');
+const railPrevBtn = document.getElementById('railPrevBtn');
+const railNextBtn = document.getElementById('railNextBtn');
+
+if (featureRail) {
+  if (railPrevBtn) {
+    railPrevBtn.addEventListener('click', () => {
+      featureRail.scrollBy({ left: -220, behavior: 'smooth' });
+    });
+  }
+  if (railNextBtn) {
+    railNextBtn.addEventListener('click', () => {
+      featureRail.scrollBy({ left: 220, behavior: 'smooth' });
+    });
+  }
+}
+
 document.querySelectorAll('.feature-pill').forEach((pill) => {
   pill.addEventListener('click', () => {
+    document.querySelectorAll('.feature-pill').forEach(p => p.classList.remove('active'));
+    pill.classList.add('active');
     const target = document.querySelector(pill.dataset.target);
     if (target) {
       target.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -1025,7 +1161,7 @@ if (introOverlay) {
       document.body.classList.add('ready');
       document.body.classList.remove('intro-active');
       introOverlay.classList.add('hidden');
-    }, 1300);
+    }, 700);
   });
 }
 

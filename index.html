@@ -35,11 +35,15 @@
       </nav>
     </header>
 
-    <section class="feature-rail" aria-label="Feature overview">
-      <button class="feature-pill" type="button" data-target="#dashboard">Live tracker</button>
-      <button class="feature-pill" type="button" data-target="#goals">Goal setting</button>
-      <button class="feature-pill" type="button" data-target="#insights">Progress insights</button>
-      <button class="feature-pill" type="button" data-target="#reflection">Daily reflection</button>
+    <section class="feature-rail-container" aria-label="Feature navigation">
+      <button class="rail-arrow-btn prev" id="railPrevBtn" type="button" aria-label="Scroll left">‹</button>
+      <div class="feature-rail" id="featureRail">
+        <button class="feature-pill active" type="button" data-target="#dashboard">⚡ Live Tracker</button>
+        <button class="feature-pill" type="button" data-target="#goals">🎯 Goal Setting</button>
+        <button class="feature-pill" type="button" data-target="#insights">📊 Progress Insights</button>
+        <button class="feature-pill" type="button" data-target="#reflection">📝 Daily Reflection</button>
+      </div>
+      <button class="rail-arrow-btn next" id="railNextBtn" type="button" aria-label="Scroll right">›</button>
     </section>
 
     <main class="dashboard">
@@ -56,8 +60,8 @@
             <svg viewBox="0 0 220 220" class="ring-svg" role="img" aria-label="Step progress">
               <defs>
                 <linearGradient id="ringGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stop-color="#7c5cff" />
-                  <stop offset="100%" stop-color="#2fe1b8" />
+                  <stop offset="0%" stop-color="#52B788" />
+                  <stop offset="100%" stop-color="#5C9CE6" />
                 </linearGradient>
               </defs>
               <circle class="ring-bg" cx="110" cy="110" r="86"></circle>
@@ -95,7 +99,7 @@
           <button class="action-btn primary" data-add="500">+500</button>
           <button class="action-btn" data-add="1000">+1,000</button>
           <button class="action-btn" data-add="2500">+2,500</button>
-          <button class="action-btn accent" id="surpriseBtn">Surprise</button>
+          <button class="action-btn accent" id="surpriseBtn">🎲 Quick Boost</button>
         </div>
 
         <div class="goal-editor">
